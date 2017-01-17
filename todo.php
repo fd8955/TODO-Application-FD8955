@@ -1,3 +1,24 @@
+<?php
+
+
+require_once 'app/init.php';
+$itemsQuery = $db->prepare("
+SELECT id, name, done
+FROM items
+WHERE user = :user
+
+");
+
+itemsQuery->execute([
+'user' => $_SESSION['user_id']
+
+]);
+
+$items = $itemsQuery->rowCount() ? $itemsQuery : [];
+echo '<pre>', print_r($items, true), '</pre>';
+
+?>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,9 +45,7 @@
 		<a href="#"> Mark as done</a>
 		</li>
 		
-		<li> 
-		<span> I'm learning how to use SQl </span>
-		</li>
+
 		
 </ul>
 
