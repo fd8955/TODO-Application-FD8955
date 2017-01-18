@@ -14,8 +14,9 @@ $itemsQuery->execute([
 ]);
 
 $items = $itemsQuery->rowCount() ? $itemsQuery : [];
-echo '<pre>', print_r($items, true), '</pre>';
 
+foreach($items as $item){
+}
 ?>
 
 
@@ -26,7 +27,7 @@ echo '<pre>', print_r($items, true), '</pre>';
 <title>To do project fd8955 4996 WSU</title>
 
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<content="width=device-width, initial-scale=1.0">
 
 
 
@@ -35,20 +36,23 @@ echo '<pre>', print_r($items, true), '</pre>';
 <body>
 
 
-
-<div class="list">
 		<h1> To Do FD8955. </h1>
 		
-		<ul>
 		
+		<?php if(!empty($items)): ?>		
+<ul>
+		<?php foreach($items as $item): ?>
 		<li> 
-		<span> Oh snap </span>
-		<a href="#"> Mark as done</a>
+			<span>	<?php echo ($item['name']); ?> </span>
+			<a href="#"> Mark as done</a>
 		</li>
-		
-
-		
+		<?php endforeach; ?>
 </ul>
+
+		<?php else: ?>
+<p> You haven't aded anything yet. </p>
+		<?php endif;?>
+
 
 <form class="add.php" method="post">
 
